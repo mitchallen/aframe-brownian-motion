@@ -18,8 +18,12 @@
 </a-entity>
         <!-- <a-sphere id="sphere" radius="0.5" color="red" position="0 0 0"> -->
         <a-sphere id="sphere" position="0 0 0" color="red" radius="0.10">
-        <a-animation attribute="color" dur="5000" easing="easeOutCubic" fill="forwards">
+        <!--
+        <a-animation attribute="color" dur="3000" easing="easeOutCubic" fill="forwards">
         </a-animation>
+        <a-animation attribute="position" dur="3000" easing="easeOutCubic" fill="forwards">
+        </a-animation>
+        -->
         </a-sphere>
     </a-scene>
 
@@ -78,7 +82,7 @@ AFRAME.registerComponent('demo', {
             // Set the new position with animation
             sphere.setAttribute('animation__position', {
                 property: 'position',
-                dur: '5000',
+                dur: '3000',
                 easing: 'easeOutCubic',
                 to: newPosition.x + ' ' + newPosition.y + ' ' + newPosition.z
             });
@@ -88,10 +92,10 @@ AFRAME.registerComponent('demo', {
               var newG = Math.floor((ny + radius) * 255, 0);
               var newB = Math.floor((nz + radius) * 255, 0);
             
-                       // Set the new position with animation
-            sphere.setAttribute('animation__position', {
+                       // Set the new color with animation
+            sphere.setAttribute('animation__color', {
                 property: 'color',
-                dur: '5000',
+                dur: '3000',
                 easing: 'easeOutCubic',
                 to:  'rgb(' + newR + ', ' + newG + ', ' + newB + ')'
             });
