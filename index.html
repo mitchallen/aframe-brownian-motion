@@ -2,104 +2,128 @@
 <html>
 
 <head>
-    <title>A-Frame Demo</title>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <title>A-Frame Demo</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 </head>
 
 <body>
-    <a-scene>
-        <a-entity id="rig" position="0 1.6 3">
-            <a-entity id="camera" camera look-controls></a-entity>
-          </a-entity>
-        <a-entity geometry="primitive: box; width: 2; height: 2; depth: 2"
-          position="0 0 0"
-          material="color: #0000FF; opacity: 0.5; wireframe: true"
-          rotation="0 0 0">
-        </a-entity>
-        <a-sphere id="sphere" position="0 0 0" color="red" radius="0.10" />
-    </a-scene>
+  <a-scene>
+    <a-entity id="rig" position="0 0.0 3">
+      <a-entity id="camera" camera look-controls></a-entity>
+    </a-entity>
+    <a-entity geometry="primitive: box; width: 2; height: 2; depth: 2" position="0 0 0"
+      material="color: #0000FF; opacity: 0.5; wireframe: true" rotation="0 0 0">
+    </a-entity>
 
-    <script>
+    <a-sphere  position-to-color log-position id="s1" position="0 0 0" color="red" radius="0.10"></a-sphere>
 
-        // Get the sphere object
-        var sphere = document.getElementById('sphere');
+    <a-sphere position-to-color position="0.5 0.5 0.5" radius="0.10"
+      animation="property:position; from:1 1 1; to:-1 -1 -1; dur:2000; dir:alternate; loop:true; easing:linear;"
+    ></a-sphere>
+    <a-sphere position-to-color position="0.5 0.5 0.5" radius="0.10"
+      animation="property:position; from:1 1 1; to:1 -1 -1; dur:2000; dir:alternate; loop:true; easing:linear;"
+    ></a-sphere>
+    <a-sphere position-to-color position="0.5 0.5 0.5" radius="0.10"
+      animation="property:position; from:1 1 1; to: -1 1 -1; dur:2000; dir:alternate; loop:true; easing:linear;"
+    ></a-sphere>
+    <a-sphere position-to-color position="0.5 0.5 0.5" radius="0.10"
+    animation="property:position; from:1 1 1; to: -1 -1 1; dur:2000; dir:alternate; loop:true; easing:linear;"
+    ></a-sphere>
+    <a-sphere position-to-color position="0.5 0.5 0.5" radius="0.10"
+    animation="property:position; from:1 1 1; to: 1 1 -1; dur:2000; dir:alternate; loop:true; easing:linear;"
+    ></a-sphere>
+    <a-sphere position-to-color position="0.5 0.5 0.5" radius="0.10"
+    animation="property:position; from:1 1 1; to: 1 -1 1; dur:2000; dir:alternate; loop:true; easing:linear;"
+    ></a-sphere>
+    <a-sphere position-to-color position="0.5 0.5 0.5" radius="0.10"
+    animation="property:position; from:1 1 1; to: -1 1 1; dur:2000; dir:alternate; loop:true; easing:linear;"
+    ></a-sphere>
 
-AFRAME.registerComponent('demo', {
-  /**
-   * this.el is the entity element.
-   * this.el.object3D is the three.js object of the entity.
-   * this.data is the component's property or properties.
-   */
-  update: function (oldData) {
-    this.el.object3D.visible = this.data;
-  }
-  // ...
-});
+  </a-scene>
+
+  <script>
+
+    // Get the sphere object
+    let s1 = document.getElementById('s1');
+
+    AFRAME.registerComponent('demo', {
+      /**
+       * this.el is the entity element.
+       * this.el.object3D is the three.js object of the entity.
+       * this.data is the component's property or properties.
+       */
+      update: function (oldData) {
+        this.el.object3D.visible = this.data;
+      }
+      // ...
+    });
 
 
-        function clipValue(value, min, max) {
-            return Math.min(Math.max(value, min), max);
-        }
+    function clipValue(value, min, max) {
+      return Math.min(Math.max(value, min), max);
+    }
 
-        // Function to update the position and color of the sphere using Brownian motion
-        function updatePositionAndColor() {
-            // Generate random offsets based on Brownian motion formula
-            let radius = 1.0 // 0.5
-            maxMove = 1.0
-            let lower = 0.0 - radius
-            let upper = radius
-  
-            // distance to move in x, y, z
-            let dx = (Math.random() - 0.5) * maxMove;
-            let dy = (Math.random() - 0.5) * maxMove;
-            let dz = (Math.random() - 0.5) * maxMove;
+    // Function to update the position and color of the sphere using Brownian motion
+    function updatePositionAndColor() {
+      // Generate random offsets based on Brownian motion formula
+      let radius = 0.5 // 0.5
+      maxMove = 1.0
+      let lower = 0.0 - radius
+      let upper = radius
 
-            // Update the position of the sphere
-            var currentPosition = sphere.getAttribute('position');
+      // distance to move in x, y, z
+      let dx = (Math.random() - 0.5) * maxMove;
+      let dy = (Math.random() - 0.5) * maxMove;
+      let dz = (Math.random() - 0.5) * maxMove;
 
-            console.log(currentPosition);
+      // Update the position of the sphere
+      var currentPosition = s1.getAttribute('position');
 
-            // calculate new position
-            // clip to within range
-            let nx = clipValue( currentPosition.x + dx, lower, upper )
-            let ny = clipValue( currentPosition.y + dy, lower, upper )
-            let nz = clipValue( currentPosition.z + dz, lower, upper )
+      // console.log(currentPosition);
 
-            var newPosition = {
-                x: nx,
-                y: ny,
-                z: nz
-            };
+      // calculate new position
+      // clip to within range
+      let nx = clipValue(currentPosition.x + dx, lower, upper)
+      let ny = clipValue(currentPosition.y + dy, lower, upper)
+      let nz = clipValue(currentPosition.z + dz, lower, upper)
 
-            // Set the new position with animation
-            sphere.setAttribute('animation__position', {
-                property: 'position',
-                dur: '500',
-                easing: 'easeOutCubic',
-                to: newPosition.x + ' ' + newPosition.y + ' ' + newPosition.z
-            });
+      var newPosition = {
+        x: nx,
+        y: ny,
+        z: nz
+      };
 
-              // Update the RGB values of the color
-              var newR = Math.floor((nx + radius) * 255, 0);
-              var newG = Math.floor((ny + radius) * 255, 0);
-              var newB = Math.floor((nz + radius) * 255, 0);
-            
-                       // Set the new color with animation
-            sphere.setAttribute('animation__color', {
-                property: 'color',
-                dur: '500',
-                easing: 'easeOutCubic',
-                to:  'rgb(' + newR + ', ' + newG + ', ' + newB + ')'
-            });
-            
 
-             // Set the new color of the sphere
-             // sphere.setAttribute('color', 'rgb(' + newR + ', ' + newG + ', ' + newB + ')' );
-        }
+      // Set the new position with animation
+      s1.setAttribute('animation__position', {
+        property: 'position',
+        dur: '500',
+        easing: 'easeOutCubic',
+        to: newPosition.x + ' ' + newPosition.y + ' ' + newPosition.z
+      });
 
-        // Update the position and color every 1000 milliseconds
-        setInterval(updatePositionAndColor, 500);
-    </script>
+      // // Update the RGB values of the color
+      // var newR = Math.floor((nx + radius) * 255, 0);
+      // var newG = Math.floor((ny + radius) * 255, 0);
+      // var newB = Math.floor((nz + radius) * 255, 0);
+
+      // // Set the new color with animation
+      // s1.setAttribute('animation__color', {
+      //   property: 'color',
+      //   dur: '500',
+      //   easing: 'easeOutCubic',
+      //   to: 'rgb(' + newR + ', ' + newG + ', ' + newB + ')'
+      // });
+
+
+      // Set the new color of the s1
+      // s1.setAttribute('color', 'rgb(' + newR + ', ' + newG + ', ' + newB + ')' );
+    }
+
+    // Update the position and color every 1000 milliseconds
+    setInterval(updatePositionAndColor, 500);
+  </script>
+  <script type="module" src="./src/app.js"></script>
 </body>
 
 </html>
