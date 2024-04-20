@@ -26,8 +26,22 @@
     </a-scene>
 
     <script>
+
         // Get the sphere object
         var sphere = document.getElementById('sphere');
+
+AFRAME.registerComponent('demo', {
+  /**
+   * this.el is the entity element.
+   * this.el.object3D is the three.js object of the entity.
+   * this.data is the component's property or properties.
+   */
+  update: function (oldData) {
+    this.el.object3D.visible = this.data;
+  }
+  // ...
+});
+
 
         function clipValue(value, min, max) {
             return Math.min(Math.max(value, min), max);
@@ -66,7 +80,7 @@
             // Set the new position with animation
             sphere.setAttribute('animation__position', {
                 property: 'position',
-                dur: '1000',
+                dur: '5000',
                 easing: 'easeOutCubic',
                 to: newPosition.x + ' ' + newPosition.y + ' ' + newPosition.z
             });
