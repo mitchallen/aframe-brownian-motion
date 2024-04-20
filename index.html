@@ -34,21 +34,23 @@
         // Function to update the position and color of the sphere using Brownian motion
         function updatePositionAndColor() {
             // Generate random offsets based on Brownian motion formula
-            let radius = 1.0
+            let radius = 0.5
+            maxMove = 5.0
             let lower = 0.0 - radius
             let upper = radius
-            let x1 = Math.random();
-            let y1 = Math.random();
-            let z1 = Math.random();
-            let dx = (x1 - 0.5) * radius;
-            let dy = (y1 - 0.5) * radius;
-            let dz = (z1 - 0.5) * radius;
+  
+            // distance to move in x, y, z
+            let dx = (Math.random() - 0.5) * maxMove;
+            let dy = (Math.random() - 0.5) * maxMove;
+            let dz = (Math.random() - 0.5) * maxMove;
 
             // Update the position of the sphere
             var currentPosition = sphere.getAttribute('position');
 
             console.log(currentPosition);
 
+            // calculate new position
+            // clip to within range
             let nx = clipValue( currentPosition.x + dx, lower, upper )
             let ny = clipValue( currentPosition.y + dy, lower, upper )
             let nz = clipValue( currentPosition.z + dz, lower, upper )
@@ -68,9 +70,9 @@
             });
 
               // Update the RGB values of the color
-              var newR = Math.floor(x1 * 255, 0);
-              var newG = Math.floor(y1 * 255, 0);
-              var newB = Math.floor(z1 * 255, 0);
+              var newR = Math.floor((nx + radius) * 255, 0);
+              var newG = Math.floor((ny + radius) * 255, 0);
+              var newB = Math.floor((nz + radius) * 255, 0);
 
               // Set the new color of the sphere
              sphere.setAttribute('color', 'rgb(' + newR + ', ' + newG + ', ' + newB + ')' );
