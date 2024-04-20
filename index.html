@@ -8,7 +8,7 @@
 
 <body>
     <a-scene>
-        <a-entity id="rig" position="0 0 3">
+        <a-entity id="rig" position="0 1.6 3">
             <a-entity id="camera" camera look-controls></a-entity>
           </a-entity>
         <a-entity geometry="primitive: box; width: 2; height: 2; depth: 2"
@@ -52,7 +52,7 @@ AFRAME.registerComponent('demo', {
         // Function to update the position and color of the sphere using Brownian motion
         function updatePositionAndColor() {
             // Generate random offsets based on Brownian motion formula
-            let radius = 0.5
+            let radius = 1.0 // 0.5
             maxMove = 5.0
             let lower = 0.0 - radius
             let upper = radius
@@ -106,7 +106,7 @@ AFRAME.registerComponent('demo', {
         }
 
         // Update the position and color every 1000 milliseconds
-        setInterval(updatePositionAndColor, 5000);
+        setInterval(updatePositionAndColor, 4000);
     </script>
 </body>
 
