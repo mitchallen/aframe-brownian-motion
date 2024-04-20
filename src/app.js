@@ -35,25 +35,22 @@ AFRAME.registerComponent('position-to-color', {
     },
   
     updateColor: function(position) {
-      // Scaling position to fit within RGB range
-    //   const r = Math.abs(position.x) * this.data.scale % 255;
-    //   const g = Math.abs(position.y) * this.data.scale % 255;
-    //   const b = Math.abs(position.z) * this.data.scale % 255;
 
-    function mapValue(value) {
-        // Apply the direct linear transformation
-        let newValue = ((value + 1.0) / 2.0) * 255;
+    	function mapValue(value) {
+        	// Apply the direct linear transformation
+        	let newValue = ((value + 1.0) / 2.0) * 255;
     
-        // Clamp the result to ensure it stays within the 0 to 255 range and round it
-        return Math.round(Math.max(0, Math.min(255, newValue)));
-    }
+        	// Clamp the result to ensure it stays within 
+			// the 0 to 255 range and round it
+        	return Math.round(Math.max(0, Math.min(255, newValue)));
+    	}
 
-    const r = mapValue(position.x);
-    const g = mapValue(position.y);
-    const b = mapValue(position.z);
+    	const r = mapValue(position.x);
+    	const g = mapValue(position.y);
+   	 	const b = mapValue(position.z);
   
-      // Update entity's material color
-      this.el.setAttribute('material', 'color', `rgb(${r}, ${g}, ${b})`);
+      	// Update entity's material color
+      	this.el.setAttribute('material', 'color', `rgb(${r}, ${g}, ${b})`);
     }
-  });
+});
   
