@@ -74,7 +74,7 @@ AFRAME.registerComponent('demo', {
             // Set the new position with animation
             sphere.setAttribute('animation__position', {
                 property: 'position',
-                dur: '3000',
+                dur: '1000',
                 easing: 'easeOutCubic',
                 to: newPosition.x + ' ' + newPosition.y + ' ' + newPosition.z
             });
@@ -87,7 +87,7 @@ AFRAME.registerComponent('demo', {
                        // Set the new color with animation
             sphere.setAttribute('animation__color', {
                 property: 'color',
-                dur: '3000',
+                dur: '1000',
                 easing: 'easeOutCubic',
                 to:  'rgb(' + newR + ', ' + newG + ', ' + newB + ')'
             });
@@ -98,7 +98,7 @@ AFRAME.registerComponent('demo', {
         }
 
         // Update the position and color every 1000 milliseconds
-        setInterval(updatePositionAndColor, 4000);
+        setInterval(updatePositionAndColor, 2000);
     </script>
 </body>
 
