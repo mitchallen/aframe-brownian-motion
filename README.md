@@ -1,6 +1,10 @@
 aframe-brownian-motion
 ==
 
+## Live demo
+
+* https://mitchallen.github.io/aframe-brownian-motion/ 
+
 ## Usage
 
 ```sh
