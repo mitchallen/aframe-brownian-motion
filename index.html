@@ -16,10 +16,15 @@
         animation="property:position; from:1 1 1; to:-1 -1 -1; dur:5000; dir:alternate; loop:true; easing:linear;"></a-mixin>
     </a-assets>
 
-
     <a-entity id="rig" position="0 1.6 3">
       <a-entity id="camera" camera look-controls></a-entity>
     </a-entity>
+
+    <a-entity position="0 3 0"
+    animation="property:rotation; to: 0 360 0; dur:20000; loop:true; easing:linear;"
+    multi-sphere='points: [{"x": 0, "y": 0, "z": 0}, {"x": -1, "y": -1, "z": -1}, {"x": 1, "y": 1, "z": 1}]'>
+      </a-entity>
+
 
     <a-entity rotation="0 0 0" animation="property:rotation; to: 0 360 0; 
  dur:20000; loop:true; easing:linear;">

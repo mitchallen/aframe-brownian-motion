@@ -1,3 +1,33 @@
+AFRAME.registerComponent('multi-sphere', {
+    schema: {
+        points: {
+            default: [],
+            parse: function(value) {
+                // Parse the incoming string into an array of objects
+                console.log(value)
+                return JSON.parse(value);
+            }
+        }
+    },
+
+    init: function() {
+        // This function is called once when the component is initialized
+        var data = this.data;
+        var el = this.el; // Reference to the entity that this component is attached to
+
+        // Create a sphere for each point
+        data.points.forEach(function(point) {
+            var sphereEl = document.createElement('a-sphere');
+            // sphereEl.setAttribute('radius', '0.3');
+            // sphereEl.setAttribute('color', 'red');
+            sphereEl.setAttribute('mixin', 'marker ball'); 
+            sphereEl.setAttribute('position', point.x + ' ' + point.y + ' ' + point.z);
+            el.appendChild(sphereEl);
+        });
+    }
+});
+
+
 AFRAME.registerComponent('log-position', {
     schema: {
         interval: { type: 'number', default: 100 }  // Log interval in milliseconds
@@ -6,7 +36,7 @@ AFRAME.registerComponent('log-position', {
     init: function () {
         this.interval = setInterval(() => {
             const position = this.el.object3D.position;
-            console.log(`Position: ${position.x.toFixed(2)}, ${position.y.toFixed(2)}, ${position.z.toFixed(2)}`);
+            // console.log(`Position: ${position.x.toFixed(2)}, ${position.y.toFixed(2)}, ${position.z.toFixed(2)}`);
         }, this.data.interval);
     },
 
