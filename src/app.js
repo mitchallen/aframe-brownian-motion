@@ -1,3 +1,16 @@
+
+const pointData = [
+    { x: 1, y: 0, z: 0 },
+    { x: 0, y: 1, z: 0 },
+    { x: 0, y: 0, z: 1 }
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const entity = document.getElementById('cube3');
+    entity.setAttribute('multi-sphere', {points: JSON.stringify(pointData)});
+});
+
+
 AFRAME.registerComponent('multi-sphere', {
     schema: {
         points: {
@@ -10,9 +23,14 @@ AFRAME.registerComponent('multi-sphere', {
         }
     },
 
+    // schema: {
+    //     points: {type: 'string', default: '[]'}
+    // },
+
     init: function() {
         // This function is called once when the component is initialized
         var data = this.data;
+        // const data = JSON.parse(this.data.jsonData);
         var el = this.el; // Reference to the entity that this component is attached to
 
         // Create a sphere for each point
