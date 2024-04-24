@@ -18,7 +18,7 @@ const pointData = [
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
-    const entity = document.getElementById('cube3');
+    const entity = document.getElementById('cubeJson');
     entity.setAttribute('multi-sphere', {points: JSON.stringify(pointData)});
 });
 
